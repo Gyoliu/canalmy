@@ -34,6 +34,7 @@ public class KafkaUtils {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+        producer.close();
     }
 
     public static void main(String[] args) {

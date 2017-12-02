@@ -206,7 +206,13 @@ public class AbstractCanalClient {
                     continue;
                 }
                 String tableName = entry.getHeader().getTableName();//获取表名
-                Class cls = Table.valueOf(tableName.toUpperCase()).getCls();//根据表名获取class
+                Class cls = null;
+                try{
+                    cls = Table.valueOf(tableName.toUpperCase()).getCls();//根据表名获取class
+                }catch (Exception ex){
+                    logger.error("无匹配表名，不消费该数据");
+                    continue;
+                }
                 List<Object> list = new ArrayList<>();
                 for (CanalEntry.RowData rowData : rowChage.getRowDatasList()) {
                     Object o = ReflectionUtil.newInstance(cls);//实例化对象

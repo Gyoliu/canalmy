@@ -1,5 +1,7 @@
 package com.example.demo.util;
 
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.beanutils.converters.*;
 import org.springframework.util.ReflectionUtils;
 
@@ -30,7 +32,10 @@ public class ReflectionUtil {
         }else if(Long.class.equals(clas)){
             return new LongConverter().convert(clas, value);
         }else if(Date.class.equals(clas)){
-            return new DateConverter().convert(clas, value);
+            DateConverter dateConverter = new DateConverter();
+            dateConverter.setPatterns(new String[]{"yyyy-MM-dd","yyyy-MM-dd HH:mm:ss"});
+            ConvertUtils.register(dateConverter,Date.class);
+            return dateConverter.convert(clas, value);
         }else if(Boolean.class.equals(clas)){
             return new BooleanConverter().convert(clas, value);
         }else if(Character.class.equals(clas)){
