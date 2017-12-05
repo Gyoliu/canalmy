@@ -14,21 +14,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.demo.util;
+package com.example.demo.kafka;
 
-public interface KafkaProperties
+public class KafkaConsumerProducerDemo implements KafkaProperties
 {
-  String topic = "testlx";
-  String bootstrapServers = "yksp020008.youkeshu.com:6667,yksp020007.youkeshu.com:6667,yksp020006.youkeshu.com:6667";
-  String groupId = "DemoConsumer";
-  String enableAutoCommit = "true";
-  String autoCommitIntervalMs = "1000";
-  String sessionTimeoutMs = "30000";
-  //String keyDeserializer = "org.apache.kafka.common.serialization.IntegerDeserializer";
-  //String valueDeserializer = "org.apache.kafka.common.serialization.StringDeserializer";
+  public static void main(String[] args)
+  {
+    final boolean isAsync = args.length > 0 ? !args[0].trim().toLowerCase().equals("sync") : true;
+    Producer producerThread = new Producer(KafkaProperties.topic, isAsync);
+    producerThread.start();
 
-
-  String keySerializer = "org.apache.kafka.common.serialization.IntegerSerializer";
-  String valueSerializer = "org.apache.kafka.common.serialization.StringSerializer";
-
+    Consumer consumerThread = new Consumer(KafkaProperties.topic);
+    consumerThread.start();
+    
+  }
 }

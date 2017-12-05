@@ -3,7 +3,6 @@ package com.example.demo.client;
 import com.alibaba.otter.canal.client.CanalConnector;
 import com.alibaba.otter.canal.protocol.CanalEntry;
 import com.alibaba.otter.canal.protocol.Message;
-import com.example.demo.entity.Sku;
 import com.example.demo.entity.Table;
 import com.example.demo.util.KafkaUtils;
 import com.example.demo.util.ReflectionUtil;
@@ -15,7 +14,6 @@ import org.slf4j.MDC;
 import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 
-import java.lang.reflect.InvocationTargetException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
