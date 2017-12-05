@@ -30,6 +30,7 @@ public class PrestoJdbcUtil {
         return null;
     }
 
+    @Deprecated
     public static Object queryPresto(String sql, Class cls){
         Connection connection = null;
         try{
@@ -46,6 +47,7 @@ public class PrestoJdbcUtil {
         }
         return null;
     }
+
 
     public static List<Map<String, Object>> queryPresto(String sql){
         List<Map<String, Object>> list = new ArrayList<>();
